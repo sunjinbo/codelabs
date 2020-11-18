@@ -1,5 +1,6 @@
 package com.codelabs
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,6 +12,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onCameraXClick(view: View) {
-
+        val intent = Intent(this, CameraXActivity::class.java)
+        startActivity(intent)
     }
 }
