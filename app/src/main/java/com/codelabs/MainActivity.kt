@@ -15,4 +15,9 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, CameraXActivity::class.java)
         startActivity(intent)
     }
+
+    fun onDataStoreClick(view: View) {
+        val intent = Intent(this, DataStoreActivity::class.java)
+        startActivity(intent)
+    }
 }

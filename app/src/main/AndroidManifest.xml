@@ -3,6 +3,7 @@
     package="com.codelabs">
 
     <uses-feature android:name="android.hardware.camera.any" />
+
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -12,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Codelabs">
-        <activity android:name=".CameraXActivity"></activity>
+        <activity android:name=".DataStoreActivity"></activity>
+        <activity android:name=".CameraXActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -19,5 +19,12 @@
             android:layout_height="wrap_content"
             android:textAllCaps="false"
             android:text="CameraX 入门" />
+
+        <Button
+            android:onClick="onDataStoreClick"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:text="使用偏好设置 DataStore" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
