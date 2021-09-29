@@ -14,18 +14,19 @@ class SnakePage extends StatelessWidget {
         title: Text('Snake'),
       ),
       body: Center(
-        child: SnakeConsole(),
+        child: SnakeConsole(context),
       ),
     );
   }
 }
 
-class SnakeConsole extends StatelessWidget {
+class SnakeConsole extends StatelessWidget implements SnakeGameCallback {
   late var snakeGame;
   late var snakePainter;
+  late var context;
 
-  SnakeConsole() {
-    snakeGame = SnakeGame();
+  SnakeConsole(BuildContext context) : this.context = context {
+    snakeGame = SnakeGame(this);
     snakePainter = SnakePainter(snakeGame);
   }
 
@@ -43,6 +44,7 @@ class SnakeConsole extends StatelessWidget {
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            SizedBox(height: 10,),
             MaterialButton(
               color: Colors.blue,
               textColor: Colors.white,
@@ -52,6 +54,7 @@ class SnakeConsole extends StatelessWidget {
                 snakeGame.turn(Direction.Top);
               },
             ),
+            SizedBox(height: 10,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -88,5 +91,37 @@ class SnakeConsole extends StatelessWidget {
         )
       ],
     );
+  }
+
+  void _showReplayDialog() async {
+    var result = await showDialog(
+        context:context,
+        builder: (context){
+          return AlertDialog(
+            title: Text('Tips'),
+            content: Text('Would you like play again?'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('Cancel'),
+                onPressed: () {
+                  Navigator.pop(context, 'Cancel');
+                },
+              ),
+              TextButton(
+                child: Text('Ok'),
+                onPressed: () {
+                  Navigator.pop(context, 'Ok');
+                  snakeGame.play();
+                },
+              )
+            ],
+          );
+        }
+    );
+  }
+
+  @override
+  void onGameOver() {
+    _showReplayDialog();
   }
 }

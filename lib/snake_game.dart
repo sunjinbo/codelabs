@@ -3,11 +3,18 @@ import 'dart:async';
 import 'package:codelabs/board.dart';
 import 'package:codelabs/snake.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import 'direction.dart';
 import 'food.dart';
 import 'barrier.dart';
 import 'log.dart';
+
+typedef GameOverCallback = void Function();
+
+abstract class SnakeGameCallback {
+  void onGameOver();
+}
 
 class SnakeGame {
   static const int Width = 20;
@@ -28,7 +35,9 @@ class SnakeGame {
 
   var _ticker = ValueNotifier<int>(-1);
 
-  SnakeGame();
+  var _callback;
+
+  SnakeGame(SnakeGameCallback callback) : _callback = callback;
 
   Snake get snake => _snake;
   List<Food> get foods => _foods;
@@ -38,6 +47,11 @@ class SnakeGame {
   void play() {
     if (!_isPlaying) {
       _isPlaying = true;
+
+      _hatchFoodInterval = FOOD_HATCH_INTERVAL;
+
+      _foods.clear();
+      _barriers.clear();
 
       _barriers.add(new Barrier(10, 9));
       _barriers.add(new Barrier(10, 10));
@@ -67,6 +81,7 @@ class SnakeGame {
     Log.d("gameOver()");
     _cancelTimer();
     _isPlaying = false;
+    _callback.onGameOver();
   }
 
   void tick() {
