@@ -52,7 +52,7 @@ class SnakePainter extends CustomPainter {
     // draw foods
     _paint.color = Colors.purple;
     for (Food food in _snakeGame.foods) {
-      var center = new Offset((food.block.x + 0.5) * blockSize + horizontalPadding, (food.block.y + 0.5) * blockSize + verticalPadding);
+      var center = new Offset((food.x + 0.5) * blockSize + horizontalPadding, (food.y + 0.5) * blockSize + verticalPadding);
       canvas.drawRect(Rect.fromCenter(center : center, width: blockSize - 1, height: blockSize - 1), _paint);
     }
 

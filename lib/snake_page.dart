@@ -51,7 +51,7 @@ class SnakeConsole extends StatelessWidget implements SnakeGameCallback {
               height: 50,
               child: new Text('Up'),
               onPressed: () {
-                snakeGame.turn(Direction.Top);
+                snakeGame.turn(Direction.Up);
               },
             ),
             SizedBox(height: 10,),
@@ -73,7 +73,7 @@ class SnakeConsole extends StatelessWidget implements SnakeGameCallback {
                   height: 50,
                   child: new Text('Down'),
                   onPressed: () {
-                    snakeGame.turn(Direction.Bottom);
+                    snakeGame.turn(Direction.Down);
                   },
                 ),
                 MaterialButton(
@@ -98,7 +98,7 @@ class SnakeConsole extends StatelessWidget implements SnakeGameCallback {
         context:context,
         builder: (context){
           return AlertDialog(
-            title: Text('Tips'),
+            title: Text('Game Over!'),
             content: Text('Would you like play again?'),
             actions: <Widget>[
               TextButton(

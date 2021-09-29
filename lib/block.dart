@@ -12,6 +12,11 @@ class Block {
       _y = y,
       type = t;
 
+  factory Block.fromJson(Map<String, dynamic> json) {
+    Block block = new Block(json['x'], json['y'], BlockTypeExtension.covert(json['type']));
+    return block;
+  }
+
   int get x => _x;
 
   set x(int value) {

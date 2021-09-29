@@ -12,16 +12,27 @@ class Snake extends Spirit {
   var body = <Block>[];
   late var direction;
 
-  Snake(int x, int y, {required Function onDie}) : super(onDie) {
-    body.add(Block(x, y, BlockType.SnakeBody));
-    direction = _direction();
-  }
+  Snake({required Function onDie}) : super(onDie);
 
   factory Snake.born(int width, int height, {required Function onDie}) {
     Random random = new Random();
     final int x = random.nextInt(width - 2) + 1;
     final int y = random.nextInt(height - 2) + 1;
-    return new Snake(x, y, onDie: onDie);
+    final Snake snake = new Snake(onDie: onDie);
+    snake.body.add(Block(x, y, BlockType.SnakeBody));
+    snake.direction = _direction();
+    return snake;
+  }
+
+  factory Snake.fromJson(Map<String, dynamic> json, {required Function onDie}) {
+    final Snake snake = new Snake(onDie: onDie);
+    snake.direction = DirectionExtension.covert(json['direction']);
+    var body = json['body'];
+    for (var it in body) {
+      Block block = Block.fromJson(it);
+      snake.body.add(block);
+    }
+    return snake;
   }
 
   Block get head => body[0];
@@ -68,8 +79,8 @@ class Snake extends Spirit {
 
   int _dx() {
     switch (direction) {
-      case Direction.Top:
-      case Direction.Bottom: return 0;
+      case Direction.Up:
+      case Direction.Down: return 0;
       case Direction.Left: return -1;
       case Direction.Right: return 1;
     }
@@ -78,23 +89,23 @@ class Snake extends Spirit {
 
   int _dy() {
     switch (direction) {
-      case Direction.Top: return -1;
-      case Direction.Bottom: return 1;
+      case Direction.Up: return -1;
+      case Direction.Down: return 1;
       case Direction.Left:
       case Direction.Right: return 0;
     }
     return 0;
   }
 
-  Direction _direction() {
+  static Direction _direction() {
     var rand = new Random();
     var ang = rand.nextInt(4);
     switch (ang) {
-      case 0: return Direction.Top;
-      case 1: return Direction.Bottom;
+      case 0: return Direction.Up;
+      case 1: return Direction.Down;
       case 2: return Direction.Left;
-      case 3: return Direction.Bottom;
+      case 3: return Direction.Right;
     }
-    return Direction.Top;
+    return Direction.Up;
   }
 }

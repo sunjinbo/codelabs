@@ -95,7 +95,7 @@ class SnakeGame {
       int nextX = _snake.nextX;
       int nextY = _snake.nextY;
       for (Food food in _foods) {
-        if (nextX == food.block.x && nextY == food.block.y) {
+        if (nextX == food.x && nextY == food.y) {
           _snake.eat(food);
           hasEatFood = true;
           break;
@@ -121,6 +121,12 @@ class SnakeGame {
   void redraw() {
     Log.d("redraw()");
     _ticker.value++;
+  }
+
+  void save() {
+    if (_isPlaying) {
+
+    }
   }
 
   void _initTimer() {

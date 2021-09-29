@@ -49,7 +49,7 @@ class Board {
       }
 
       for (Food food in _foods) {
-        if (food.block.x == x && food.block.y == y) {
+        if (food.x == x && food.y == y) {
           exist = true;
           break;
         }
@@ -100,7 +100,7 @@ class Board {
       }
     }
     for (Food food in _foods) {
-      if (x == food.block.x && y == food.block.y) {
+      if (x == food.x && y == food.y) {
         return BlockType.Barrier;
       }
     }
