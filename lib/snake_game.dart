@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:codelabs/board.dart';
 import 'package:codelabs/snake.dart';
@@ -127,6 +128,13 @@ class SnakeGame {
     if (_isPlaying) {
 
     }
+  }
+
+  Map toJson() => {"snake":snake, "foods":foods, "barriers":barriers};
+
+  @override
+  String toString() {
+    return json.encode(this);
   }
 
   void _initTimer() {

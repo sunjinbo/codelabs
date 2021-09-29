@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:codelabs/block.dart';
@@ -10,7 +11,7 @@ import 'log.dart';
 
 class Snake extends Spirit {
   var body = <Block>[];
-  late var direction;
+  late Direction direction;
 
   Snake({required Function onDie}) : super(onDie);
 
@@ -84,7 +85,6 @@ class Snake extends Spirit {
       case Direction.Left: return -1;
       case Direction.Right: return 1;
     }
-    return 0;
   }
 
   int _dy() {
@@ -107,5 +107,12 @@ class Snake extends Spirit {
       case 3: return Direction.Right;
     }
     return Direction.Up;
+  }
+
+  Map toJson() => {"direction":direction.name, "body":body};
+
+  @override
+  String toString() {
+    return json.encode(this);
   }
 }

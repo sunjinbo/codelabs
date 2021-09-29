@@ -9,4 +9,11 @@ class Barrier extends Block {
     final int y = json['y'];
     return Barrier(x, y);
   }
+
+  Map toJson() => {"x":x, "y":y, "type":type.name};
+
+  @override
+  String toString() {
+    return "{\"x\":$x,\"y\":$y,\"type\":\"${type.name}\"}";
+  }
 }

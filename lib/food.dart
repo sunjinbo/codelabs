@@ -37,4 +37,11 @@ class Food extends Spirit {
       die();
     }
   }
+
+  Map toJson() => {"x":x, "y":y, "life":life, "type":type.name};
+
+  @override
+  String toString() {
+    return "{\"x\":$x,\"y\":$y,\"life\":$life,\"type\":\"${type.name}\"}";
+  }
 }
