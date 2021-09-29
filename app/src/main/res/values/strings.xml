@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">codelabs</string>
-
-    <string name="show_completed">Show completed tasks</string>
-    <string name="priority">Priority</string>
-    <string name="deadline">Deadline</string>
-    <string name="priority_value">Priority %s</string>
-</resources>
