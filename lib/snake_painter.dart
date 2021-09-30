@@ -3,6 +3,7 @@ import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 
+import 'package:codelabs/direction.dart';
 import 'package:codelabs/snake_game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,8 +18,13 @@ class SnakePainter extends CustomPainter {
   Paint _paint = Paint();
 
   bool _isResourceInit = false;
+
   late ui.Image _foodImage;
-  late ui.Image _snakeHeadImage;
+  late ui.Image _barrierImage;
+  late ui.Image _snakeHeadUpImage;
+  late ui.Image _snakeHeadDownImage;
+  late ui.Image _snakeHeadLeftImage;
+  late ui.Image _snakeHeadRightImage;
   late ui.Image _snakeBodyImage;
 
   SnakePainter(SnakeGame game) : _snakeGame = game, super(repaint: game.ticker);
@@ -26,13 +32,6 @@ class SnakePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) async {
     Log.d("paint()");
-
-    if (!_isResourceInit) {
-      _isResourceInit = true;
-      _foodImage = await getImage('assets/mouse.png');
-      _snakeHeadImage = await getImage('assets/snake_head.png');
-      _snakeBodyImage = await getImage('assets/snake_body.png');
-    }
 
     // draw background
     _paint.color = Colors.grey;
@@ -58,15 +57,46 @@ class SnakePainter extends CustomPainter {
           _paint);
     }
 
+    if (!_isResourceInit) {
+      _isResourceInit = true;
+      _foodImage = await getImage('assets/food.png');
+      _barrierImage = await getImage('assets/barrier.png');
+      _snakeHeadUpImage = await getImage('assets/snake_head_up.png');
+      _snakeHeadDownImage = await getImage('assets/snake_head_down.png');
+      _snakeHeadLeftImage = await getImage('assets/snake_head_left.png');
+      _snakeHeadRightImage = await getImage('assets/snake_head_right.png');
+      _snakeBodyImage = await getImage('assets/snake_body.png');
+    }
+
     // draw snake
-    _paint.color = Colors.red;
-    for (Block block in _snakeGame.snake.body) {
+    for (int i = 0; i < _snakeGame.snake.body.length; ++i) {
+      var block = _snakeGame.snake.body[i];
       var center = new Offset((block.x + 0.5) * blockSize + horizontalPadding, (block.y + 0.5) * blockSize + verticalPadding);
-      canvas.drawRect(Rect.fromCenter(center : center, width: blockSize - 1, height: blockSize - 1), _paint);
+      var src = Rect.fromLTWH(0, 0, _snakeBodyImage.width.toDouble(), _snakeBodyImage.height.toDouble());
+      var dst = Rect.fromCenter(center : center, width: blockSize - 1, height: blockSize - 1);
+
+      if (i == 0) {
+        // draw snake head
+        switch (_snakeGame.snake.direction) {
+          case Direction.Up:
+            canvas.drawImageRect(_snakeHeadUpImage, src, dst, _paint);
+            break;
+          case Direction.Down:
+            canvas.drawImageRect(_snakeHeadDownImage, src, dst, _paint);
+            break;
+          case Direction.Left:
+            canvas.drawImageRect(_snakeHeadLeftImage, src, dst, _paint);
+            break;
+          case Direction.Right:
+            canvas.drawImageRect(_snakeHeadRightImage, src, dst, _paint);
+            break;
+        }
+      } else {
+        canvas.drawImageRect(_snakeBodyImage, src, dst, _paint);
+      }
     }
 
     // draw foods
-    _paint.color = Colors.purple;
     for (Food food in _snakeGame.foods) {
       var center = new Offset((food.x + 0.5) * blockSize + horizontalPadding, (food.y + 0.5) * blockSize + verticalPadding);
       var src = Rect.fromLTWH(0, 0, _foodImage.width.toDouble(), _foodImage.height.toDouble());
@@ -78,7 +108,9 @@ class SnakePainter extends CustomPainter {
     _paint.color = Colors.blue;
     for (Block block in _snakeGame.barriers) {
       var center = new Offset((block.x + 0.5) * blockSize + horizontalPadding, (block.y + 0.5) * blockSize + verticalPadding);
-      canvas.drawRect(Rect.fromCenter(center : center, width: blockSize - 1, height: blockSize - 1), _paint);
+      var src = Rect.fromLTWH(0, 0, _barrierImage.width.toDouble(), _barrierImage.height.toDouble());
+      var dst = Rect.fromCenter(center : center, width: blockSize - 1, height: blockSize - 1);
+      canvas.drawImageRect(_barrierImage, src, dst, _paint);
     }
   }
 
