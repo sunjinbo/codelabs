@@ -4,6 +4,7 @@ import 'package:codelabs/snake_painter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'codelabs_localizations.dart';
 import 'direction.dart';
 
 class SnakePage extends StatelessWidget {
@@ -11,7 +12,7 @@ class SnakePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Snake'),
+        title: Text(CodeLabsLocalizations.of(context).snake),
       ),
       body: Center(
         child: SnakeConsole(context),
@@ -21,9 +22,9 @@ class SnakePage extends StatelessWidget {
 }
 
 class SnakeConsole extends StatelessWidget implements SnakeGameCallback {
-  late var snakeGame;
-  late var snakePainter;
-  late var context;
+  late final snakeGame;
+  late final snakePainter;
+  final context;
 
   SnakeConsole(BuildContext context) : this.context = context {
     snakeGame = SnakeGame(this);
@@ -49,7 +50,7 @@ class SnakeConsole extends StatelessWidget implements SnakeGameCallback {
               color: Colors.blue,
               textColor: Colors.white,
               height: 50,
-              child: new Text('Up'),
+              child: new Text(CodeLabsLocalizations.of(context).up),
               onPressed: () {
                 snakeGame.turn(Direction.Up);
               },
@@ -62,7 +63,7 @@ class SnakeConsole extends StatelessWidget implements SnakeGameCallback {
                   color: Colors.blue,
                   textColor: Colors.white,
                   height: 50,
-                  child: new Text('Left'),
+                  child: new Text(CodeLabsLocalizations.of(context).left),
                   onPressed: () {
                     snakeGame.turn(Direction.Left);
                   },
@@ -71,7 +72,7 @@ class SnakeConsole extends StatelessWidget implements SnakeGameCallback {
                   color: Colors.blue,
                   textColor: Colors.white,
                   height: 50,
-                  child: new Text('Down'),
+                  child: new Text(CodeLabsLocalizations.of(context).down),
                   onPressed: () {
                     snakeGame.turn(Direction.Down);
                   },
@@ -80,7 +81,7 @@ class SnakeConsole extends StatelessWidget implements SnakeGameCallback {
                   color: Colors.blue,
                   textColor: Colors.white,
                   height: 50,
-                  child: new Text('Right'),
+                  child: new Text(CodeLabsLocalizations.of(context).right),
                   onPressed: () {
                     snakeGame.turn(Direction.Right);
                   },
@@ -98,17 +99,17 @@ class SnakeConsole extends StatelessWidget implements SnakeGameCallback {
         context:context,
         builder: (context){
           return AlertDialog(
-            title: Text('Game Over!'),
-            content: Text('Would you like play again?'),
+            title: Text(CodeLabsLocalizations.of(context).gameOver),
+            content: Text(CodeLabsLocalizations.of(context).replayTips),
             actions: <Widget>[
               TextButton(
-                child: Text('Cancel'),
+                child: Text(CodeLabsLocalizations.of(context).cancel),
                 onPressed: () {
                   Navigator.pop(context, 'Cancel');
                 },
               ),
               TextButton(
-                child: Text('Ok'),
+                child: Text(CodeLabsLocalizations.of(context).ok),
                 onPressed: () {
                   Navigator.pop(context, 'Ok');
                   snakeGame.play();

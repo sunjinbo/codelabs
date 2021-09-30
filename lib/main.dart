@@ -1,20 +1,46 @@
+import 'package:codelabs/codelabs_localizations.dart';
 import 'package:codelabs/snake_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'codelabs_localizations_delegates.dart';
+import 'codelabs_localizations_widget.dart';
 
 void main() {
   runApp(MyApp());
 }
+
+GlobalKey<CodeLabsLocalizationsState> codeLabsLocalizationStateKey = new GlobalKey<CodeLabsLocalizationsState>();
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'CodeLabs',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'codelabs'),
+      home: new CodeLabsLocalizationsWidget(
+        key: codeLabsLocalizationStateKey,
+        child: MyHomePage(title: 'CodeLabs'),
+      ),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        CodeLabsLocalizationsDelegates.delegate
+      ],
+      locale: Locale('zh', 'CN'),
+      supportedLocales: [
+        const Locale('en', 'US'),
+        const Locale('zh', 'CN'),
+      ],
+    localeResolutionCallback: (local, support) {
+      if (support.contains(local)) {
+        return local;
+      }
+      return const Locale('zh', 'CN'); // default language
+    }
     );
   }
 }
@@ -35,6 +61,13 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.language),
+            tooltip: CodeLabsLocalizations.of(context).language,
+          )
+        ],
       ),
       body: Container(
         margin: EdgeInsets.only(top: 4, left: 4, right: 4),
@@ -45,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
               color: Colors.blue,
               textColor: Colors.white,
               minWidth: double.infinity,
-              child: new Text('Snake'),
+              child: new Text(CodeLabsLocalizations.of(context).snake),
               onPressed: () {
                 Navigator.push(context,
                   MaterialPageRoute(builder: (context){

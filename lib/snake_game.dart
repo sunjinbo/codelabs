@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:codelabs/board.dart';
 import 'package:codelabs/snake.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'direction.dart';
 import 'food.dart';
@@ -126,7 +128,11 @@ class SnakeGame {
 
   void save() {
     if (_isPlaying) {
-
+      String jsonString = toString();
+      Log.d(jsonString);
+      _saveData(jsonString);
+    } else {
+      _deleteData();
     }
   }
 
@@ -159,6 +165,23 @@ class SnakeGame {
           }));
         }
       }
+    }
+  }
+
+  Future<void> _saveData(String jsonData) async {
+    Directory dir = await getTemporaryDirectory();
+    File file = new File('${dir.path}/snake.txt');
+    if (!file.existsSync()) {
+      file.createSync();
+    }
+    await file.writeAsString(jsonData);
+  }
+
+  Future<void> _deleteData() async {
+    Directory dir = await getTemporaryDirectory();
+    File file = new File('${dir.path}/snake.txt');
+    if (file.existsSync()) {
+      file.deleteSync();
     }
   }
 }
