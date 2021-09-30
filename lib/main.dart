@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () { _changeLocal(); },
             icon: Icon(Icons.language),
             tooltip: CodeLabsLocalizations.of(context).language,
           )
@@ -90,5 +90,44 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  void _changeLocal() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return new SimpleDialog(
+          title: new Text(CodeLabsLocalizations.of(context).selectLanguage),
+          children: <Widget>[
+            SimpleDialogOption(
+              onPressed: () {
+                _switchLanguage(0);
+                Navigator.of(context).pop();
+              },
+              child: new Text(CodeLabsLocalizations.of(context).chinese),
+            ),
+            SimpleDialogOption(
+              onPressed: () {
+                _switchLanguage(1);
+                Navigator.of(context).pop();
+              },
+              child: new Text(CodeLabsLocalizations.of(context).english),
+            )
+          ],
+        );
+      },
+    );
+  }
+
+  void _switchLanguage(int index) {
+    switch(index){
+      case 0:
+        codeLabsLocalizationStateKey.currentState?.changeLocale(const Locale('zh','CH'));
+        break;
+      case 1:
+        codeLabsLocalizationStateKey.currentState?.changeLocale(const Locale('en','US'));
+        break;
+    }
   }
 }

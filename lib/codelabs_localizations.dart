@@ -22,7 +22,10 @@ class CodeLabsLocalizations {
       'game over': 'Game Over!',
       'replay tips': 'Would you like play again?',
       'ok': 'Ok',
-      'cancel': 'Cancel'
+      'cancel': 'Cancel',
+      'select language': 'Select language',
+      'english': 'English',
+      'chinese': 'Chinese'
     },
     'zh': {
       'snake': '贪吃蛇',
@@ -34,7 +37,10 @@ class CodeLabsLocalizations {
       'game over': '游戏结束！',
       'replay tips': '想再玩一局吗？',
       'ok': '确认',
-      'cancel': '取消'
+      'cancel': '取消',
+      'select language': '请选择语言',
+      'english': '英文',
+      'chinese': '中文'
     }
   };
 
@@ -86,5 +92,20 @@ class CodeLabsLocalizations {
   get cancel {
     Map<String, String> map = _localizedValues[locale.languageCode]!;
     return map['cancel'];
+  }
+
+  get selectLanguage {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['select language'];
+  }
+
+  get english {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['english'];
+  }
+
+  get chinese {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['chinese'];
   }
 }
