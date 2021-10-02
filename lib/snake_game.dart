@@ -40,7 +40,7 @@ class SnakeGame {
 
   var _callback;
 
-  SnakeGame(SnakeGameCallback callback) : _callback = callback;
+  SnakeGame(SnakeGameCallback? callback) : _callback = callback;
 
   Snake get snake => _snake;
   List<Food> get foods => _foods;
@@ -84,7 +84,7 @@ class SnakeGame {
     Log.d("gameOver()");
     _cancelTimer();
     _isPlaying = false;
-    _callback.onGameOver();
+    _callback?.onGameOver();
   }
 
   void tick() {
@@ -140,7 +140,10 @@ class SnakeGame {
 
   @override
   String toString() {
-    return json.encode(this);
+    if (_isPlaying) {
+      return json.encode(this);
+    }
+    return "";
   }
 
   void _initTimer() {

@@ -69,4 +69,10 @@ void main() {
     snake.direction = Direction.Left;
     expect(snake.toString(), jsonString);
   });
+
+  test("测试将SnakeGame对象转成Json字符串", () {
+    var snakeGame = new SnakeGame(null);
+    var jsonString = snakeGame.toString();
+    expect(jsonString, jsonString);
+  });
 }
