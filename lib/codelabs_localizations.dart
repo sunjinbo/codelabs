@@ -25,7 +25,13 @@ class CodeLabsLocalizations {
       'cancel': 'Cancel',
       'select language': 'Select language',
       'english': 'English',
-      'chinese': 'Chinese'
+      'chinese': 'Chinese',
+      'basic widgets': 'Basic Widgets',
+      'material components': 'Material Components',
+      'cupertino components': 'Cupertino Components',
+      'layout': 'Layout',
+      'text': 'Text',
+      'assets': "Assets, Image, Icons"
     },
     'zh': {
       'snake': '贪吃蛇',
@@ -40,7 +46,13 @@ class CodeLabsLocalizations {
       'cancel': '取消',
       'select language': '请选择语言',
       'english': '英文',
-      'chinese': '中文'
+      'chinese': '中文',
+      'basic widgets': '基础控件',
+      'material components': 'Android风格的控件',
+      'cupertino components': 'iOS风格的控件',
+      'layout': '布局',
+      'text': '文本显示和样式',
+      'assets': "Assets、图片、Icons"
     }
   };
 
@@ -107,5 +119,35 @@ class CodeLabsLocalizations {
   get chinese {
     Map<String, String> map = _localizedValues[locale.languageCode]!;
     return map['chinese'];
+  }
+
+  get basicWidgets {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['basic widgets'];
+  }
+
+  get materialComponents {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['material components'];
+  }
+
+  get cupertinoComponents {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['cupertino components'];
+  }
+
+  get layout {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['layout'];
+  }
+
+  get text {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['text'];
+  }
+
+  get assets {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['assets'];
   }
 }
