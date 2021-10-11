@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'codelabs_localizations.dart';
 
@@ -81,20 +80,28 @@ class ButtonComponentsView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          RaisedButton(
-            color: Colors.blueAccent,
-            child: Text('Button'),
-            onPressed: () {},
+          Padding(
+            padding: EdgeInsets.fromLTRB(25, 2, 3, 1),
+            child: RaisedButton(
+              color: Colors.blueAccent,
+              child: Text('Button'),
+              onPressed: () {},
+            )
           ),
           FlatButton(
             color: Colors.deepOrange,
             child: Text('Button'),
             onPressed: (){},
           ),
-          IconButton(
-            icon: const Icon(Icons.access_alarm_outlined),
-            tooltip: 'alarm',
-            onPressed: (){},
+          Center(
+            child: Align(
+              alignment: Alignment.topLeft,
+              child: IconButton(
+                icon: const Icon(Icons.access_alarm_outlined),
+                tooltip: 'alarm',
+                onPressed: (){},
+              ),
+            ),
           ),
           ButtonBar(
             alignment: MainAxisAlignment.spaceAround,
@@ -117,6 +124,10 @@ class ButtonComponentsView extends StatelessWidget {
                 onPressed: (){},
               ),
             ],
+          ),
+          AspectRatio(
+            aspectRatio: 5,
+            child: Container(color: Colors.purpleAccent,),
           )
         ],
       ),

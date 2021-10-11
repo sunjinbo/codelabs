@@ -50,14 +50,17 @@ class BasicWidgetsContainer extends StatelessWidget {
                 ]),
             new Row(
               children: [
-                const Image(
-                  width: 120,
-                  height: 120,
-                  color: Colors.lightBlue,
-                  colorBlendMode: BlendMode.colorBurn,
-                  isAntiAlias: true,
-                  fit: BoxFit.contain,
-                  image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+                FittedBox(
+                  child: const Image(
+                    width: 120,
+                    height: 120,
+                    color: Colors.lightBlue,
+                    colorBlendMode: BlendMode.colorBurn,
+                    isAntiAlias: true,
+                    fit: BoxFit.contain,
+                    image: NetworkImage('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+                  ),
+                  fit: BoxFit.fill
                 ),
                 const Text(
                   'Hello, Flutter!!',
