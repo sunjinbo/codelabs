@@ -1,12 +1,13 @@
-import 'package:codelabs/codelabs_localizations_delegates.dart';
-import 'package:codelabs/codelabs_localizations_widget.dart';
-import 'package:codelabs/codelabs_localizations.dart';
-import 'package:codelabs/material_components.dart';
-import 'package:codelabs/snake_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'basic_widgets.dart';
+import 'cupertino_components.dart';
+import 'codelabs_localizations_delegates.dart';
+import 'codelabs_localizations_widget.dart';
+import 'codelabs_localizations.dart';
+import 'material_components.dart';
+import 'snake_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -109,6 +110,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context){
                       return MaterialComponentsPage();
+                    }));
+              },
+            ),
+            MaterialButton(
+              color: Colors.blue,
+              textColor: Colors.white,
+              minWidth: double.infinity,
+              child: new Text(CodeLabsLocalizations.of(context).cupertinoComponents),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context){
+                      return CupertinoComponentsPage();
                     }));
               },
             ),
