@@ -356,6 +356,27 @@ class InfoComponentsView extends StatelessWidget {
           minHeight: 2,
           value: 50,
           semanticsLabel: 'Linear progress indicator',
+        ),
+        Text(
+          'Hello, Text! This is our homeland, we believe our country will be the top class country in the  world.',
+          textAlign: TextAlign.center,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(fontWeight: FontWeight.bold),
+          textScaleFactor: 2,
+        ),
+        RichText(
+          text: TextSpan(
+            text: 'hello ',
+            style: DefaultTextStyle.of(context).style,
+            children: const <TextSpan>[
+              TextSpan(text: 'bold', style: TextStyle(fontWeight: FontWeight.bold)),
+              TextSpan(text: ' world!'),
+            ]
+        )),
+        RawImage(
+          color: Colors.red,
+          width: 20,
+          height: 20,
         )
       ],
     );
