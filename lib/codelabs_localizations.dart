@@ -31,7 +31,8 @@ class CodeLabsLocalizations {
       'cupertino components': 'Cupertino Components',
       'layout': 'Layout',
       'text': 'Text',
-      'assets': "Assets, Image, Icons"
+      'assets': 'Assets, Image, Icons',
+      'list': 'List'
     },
     'zh': {
       'snake': '贪吃蛇',
@@ -52,7 +53,8 @@ class CodeLabsLocalizations {
       'cupertino components': 'iOS风格的控件',
       'layout': '布局',
       'text': '文本显示和样式',
-      'assets': "Assets、图片、Icons"
+      'assets': 'Assets、图片、Icons',
+      'list': '列表控件'
     }
   };
 
@@ -149,5 +151,10 @@ class CodeLabsLocalizations {
   get assets {
     Map<String, String> map = _localizedValues[locale.languageCode]!;
     return map['assets'];
+  }
+
+  get list {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['list'];
   }
 }
