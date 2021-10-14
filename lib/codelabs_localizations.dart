@@ -32,7 +32,8 @@ class CodeLabsLocalizations {
       'layout': 'Layout',
       'text': 'Text',
       'assets': 'Assets, Image, Icons',
-      'list': 'List'
+      'list': 'List',
+      'asynchronous': 'Asynchronous'
     },
     'zh': {
       'snake': '贪吃蛇',
@@ -54,7 +55,8 @@ class CodeLabsLocalizations {
       'layout': '布局',
       'text': '文本显示和样式',
       'assets': 'Assets、图片、Icons',
-      'list': '列表控件'
+      'list': '列表控件',
+      'asynchronous': '异步处理'
     }
   };
 
@@ -156,5 +158,10 @@ class CodeLabsLocalizations {
   get list {
     Map<String, String> map = _localizedValues[locale.languageCode]!;
     return map['list'];
+  }
+
+  get asynchronous {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['asynchronous'];
   }
 }
