@@ -33,8 +33,16 @@ class CodeLabsLocalizations {
       'text': 'Text',
       'assets': 'Assets, Image, Icons',
       'list': 'List',
-      'asynchronous': 'Asynchronous'
+      'asynchronous': 'Asynchronous',
+      'io': 'File & Network',
+      'start': 'Start',
+      'pause': 'Pause',
+      'resume': 'Resume',
+      'stop': 'Stop',
+      'retry': 'Retry',
+      'try again': 'Try again'
     },
+
     'zh': {
       'snake': '贪吃蛇',
       'language': '语言',
@@ -56,7 +64,14 @@ class CodeLabsLocalizations {
       'text': '文本显示和样式',
       'assets': 'Assets、图片、Icons',
       'list': '列表控件',
-      'asynchronous': '异步处理'
+      'asynchronous': '异步处理',
+      'io': '文件操作与网络请求',
+      'start': '开始',
+      'pause': '暂停',
+      'resume': '继续',
+      'stop': '停止',
+      'retry': '重试',
+      'try again': '再来一次'
     }
   };
 
@@ -163,5 +178,40 @@ class CodeLabsLocalizations {
   get asynchronous {
     Map<String, String> map = _localizedValues[locale.languageCode]!;
     return map['asynchronous'];
+  }
+
+  get io {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['io'];
+  }
+
+  get start {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['start'];
+  }
+
+  get pause {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['pause'];
+  }
+
+  get resume {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['resume'];
+  }
+
+  get stop {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['stop'];
+  }
+
+  get retry {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['retry'];
+  }
+
+  get tryAgain {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['try again'];
   }
 }

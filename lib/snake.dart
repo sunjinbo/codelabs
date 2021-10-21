@@ -94,7 +94,6 @@ class Snake extends Spirit {
       case Direction.Left:
       case Direction.Right: return 0;
     }
-    return 0;
   }
 
   static Direction _direction() {

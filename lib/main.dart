@@ -8,6 +8,7 @@ import 'cupertino_components.dart';
 import 'codelabs_localizations_delegates.dart';
 import 'codelabs_localizations_widget.dart';
 import 'codelabs_localizations.dart';
+import 'io_components.dart';
 import 'layout_widgets.dart';
 import 'material_components.dart';
 import 'snake_page.dart';
@@ -161,6 +162,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context){
                       return AsyncComponentsPage();
+                    }));
+              },
+            ),
+            MaterialButton(
+              color: Colors.blue,
+              textColor: Colors.white,
+              minWidth: double.infinity,
+              child: new Text(CodeLabsLocalizations.of(context).io),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context){
+                      return IoComponentsPage();
                     }));
               },
             ),
