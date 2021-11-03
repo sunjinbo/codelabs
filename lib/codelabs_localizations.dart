@@ -40,7 +40,8 @@ class CodeLabsLocalizations {
       'resume': 'Resume',
       'stop': 'Stop',
       'retry': 'Retry',
-      'try again': 'Try again'
+      'try again': 'Try again',
+      'custom widgets': 'Custom Widgets',
     },
 
     'zh': {
@@ -71,7 +72,8 @@ class CodeLabsLocalizations {
       'resume': '继续',
       'stop': '停止',
       'retry': '重试',
-      'try again': '再来一次'
+      'try again': '再来一次',
+      'custom widgets': '自定义组件',
     }
   };
 
@@ -213,5 +215,10 @@ class CodeLabsLocalizations {
   get tryAgain {
     Map<String, String> map = _localizedValues[locale.languageCode]!;
     return map['try again'];
+  }
+
+  get customWidgets {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['custom widgets'];
   }
 }
