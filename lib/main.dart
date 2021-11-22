@@ -1,3 +1,4 @@
+import 'package:codelabs/event_components.dart';
 import 'package:codelabs/list_components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -200,6 +201,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context){
                       return CustomComponentsPage();
+                    }));
+              },
+            ),
+            MaterialButton(
+              color: Colors.blue,
+              textColor: Colors.white,
+              minWidth: double.infinity,
+              child: new Text(CodeLabsLocalizations.of(context).eventHandler),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context){
+                      return EventComponentsPage();
                     }));
               },
             ),

@@ -42,6 +42,7 @@ class CodeLabsLocalizations {
       'retry': 'Retry',
       'try again': 'Try again',
       'custom widgets': 'Custom Widgets',
+      'event handler': 'Event Handler'
     },
 
     'zh': {
@@ -74,6 +75,7 @@ class CodeLabsLocalizations {
       'retry': '重试',
       'try again': '再来一次',
       'custom widgets': '自定义组件',
+      'event handler': '事件处理'
     }
   };
 
@@ -220,5 +222,10 @@ class CodeLabsLocalizations {
   get customWidgets {
     Map<String, String> map = _localizedValues[locale.languageCode]!;
     return map['custom widgets'];
+  }
+
+  get eventHandler {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['event handler'];
   }
 }
