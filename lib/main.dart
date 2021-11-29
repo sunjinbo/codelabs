@@ -14,6 +14,7 @@ import 'io_components.dart';
 import 'isolate_components.dart';
 import 'layout_widgets.dart';
 import 'material_components.dart';
+import 'native_components.dart';
 import 'snake_page.dart';
 
 void main() {
@@ -213,6 +214,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context){
                       return EventComponentsPage();
+                    }));
+              },
+            ),
+            MaterialButton(
+              color: Colors.blue,
+              textColor: Colors.white,
+              minWidth: double.infinity,
+              child: new Text(CodeLabsLocalizations.of(context).native),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context){
+                      return NativeComponentsPage();
                     }));
               },
             ),

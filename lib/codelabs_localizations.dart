@@ -42,7 +42,8 @@ class CodeLabsLocalizations {
       'retry': 'Retry',
       'try again': 'Try again',
       'custom widgets': 'Custom Widgets',
-      'event handler': 'Event Handler'
+      'event handler': 'Event Handler',
+      'native': 'Native Invocation'
     },
 
     'zh': {
@@ -75,7 +76,8 @@ class CodeLabsLocalizations {
       'retry': '重试',
       'try again': '再来一次',
       'custom widgets': '自定义组件',
-      'event handler': '事件处理'
+      'event handler': '事件处理',
+      'native': '原生调用',
     }
   };
 
@@ -227,5 +229,10 @@ class CodeLabsLocalizations {
   get eventHandler {
     Map<String, String> map = _localizedValues[locale.languageCode]!;
     return map['event handler'];
+  }
+
+  get native {
+    Map<String, String> map = _localizedValues[locale.languageCode]!;
+    return map['native'];
   }
 }
