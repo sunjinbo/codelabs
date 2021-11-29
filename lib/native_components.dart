@@ -14,6 +14,15 @@ class NativeComponentsPage extends StatefulWidget {
 class _NativeStatefulWidgetState extends State<NativeComponentsPage> {
   static const platform = const MethodChannel("com.codelabs.codelabs/battery");
   String _batteryLevel = 'Unknown battery level.';
+  String _flutterTips = 'No flutter tips.';
+
+  var _textController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    platform.setMethodCallHandler(platformCallHandler);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +32,32 @@ class _NativeStatefulWidgetState extends State<NativeComponentsPage> {
         appBar: AppBar(title: Text(CodeLabsLocalizations.of(context).native),),
         body: Container(
           color: Colors.white,
-          child: Text("$_batteryLevel"),
+          child: Column(
+            children: [
+              Text("$_batteryLevel"),
+              TextField(
+                decoration: InputDecoration(
+                    fillColor: Colors.lightGreen
+                ),
+                controller: _textController,
+                maxLength: 20,
+                maxLines: 1,
+              ),
+              MaterialButton(
+                color: Colors.blue,
+                textColor: Colors.white,
+                minWidth: double.infinity,
+                child: new Text('send text to native'),
+                onPressed: () async {
+                  await platform.invokeMethod("setTips");
+
+                  await _getTips();
+                },
+              ),
+              Text("$_flutterTips"),
+              AndroidView(viewType: 'com.codelabs.codelabs/myview')
+            ],
+          ),
         )
     );
   }
@@ -43,5 +77,30 @@ class _NativeStatefulWidgetState extends State<NativeComponentsPage> {
     });
 
     return batteryLevel;
+  }
+
+  Future<dynamic> platformCallHandler(MethodCall call) async {
+    switch (call.method) {
+      case "getFlutterTips":
+        return _textController.text;
+        break;
+    }
+  }
+
+  Future<String> _getTips() async {
+    String tips = 'No flutter tips.';
+
+    try {
+      final String result = await platform.invokeMethod("getTips");
+      tips = "$result";
+    } on PlatformException catch (e) {
+      tips = 'Failed to get tips: ${e.message}';
+    }
+
+    setState(() {
+      _flutterTips = tips;
+    });
+
+    return tips;
   }
 }
