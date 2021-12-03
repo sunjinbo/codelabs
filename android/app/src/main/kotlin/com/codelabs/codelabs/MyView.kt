@@ -7,17 +7,16 @@ import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.common.BinaryMessenger
 
 class MyView : PlatformView {
-    private var myNativeView: TextView? = null
+    private lateinit var myNativeView: TextView
 
     constructor(
         context: Context?,
-        messenger: BinaryMessenger?,
         id: Int,
         params: Map<String?, Any?>?
     ) {
-        val myNativeView = TextView(context)
+        myNativeView = TextView(context)
+        myNativeView.textSize = 38.0.toFloat()
         myNativeView.text = "Android Native View"
-        this.myNativeView = myNativeView
     }
 
     override fun getView(): View? {

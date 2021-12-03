@@ -27,6 +27,9 @@ class _NativeStatefulWidgetState extends State<NativeComponentsPage> {
   @override
   Widget build(BuildContext context) {
     _getBatteryLevel();
+    final String viewType = 'mynativeview';
+    final Map<String, dynamic> creationParams = <String, dynamic>{};
+
 
     return Scaffold(
         appBar: AppBar(title: Text(CodeLabsLocalizations.of(context).native),),
@@ -55,7 +58,12 @@ class _NativeStatefulWidgetState extends State<NativeComponentsPage> {
                 },
               ),
               Text("$_flutterTips"),
-              AndroidView(viewType: 'com.codelabs.codelabs/myview')
+              Container(
+                height: 100,
+                child: AndroidView(viewType: viewType,
+                  creationParams: creationParams,
+                  creationParamsCodec: const StandardMessageCodec(),),
+              )
             ],
           ),
         )

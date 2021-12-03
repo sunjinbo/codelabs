@@ -18,6 +18,12 @@ class MainActivity: FlutterActivity() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         GeneratedPluginRegistrant.registerWith(flutterEngine)
+
+        flutterEngine
+            .platformViewsController
+            .registry
+            .registerViewFactory("mynativeview", MyViewFactory())
+
         MethodChannel(flutterEngine.dartExecutor, CHANNEL).setMethodCallHandler {
                 methodCall: MethodCall, result: MethodChannel.Result ->
             if (methodCall.method.equals("getBatteryLevel")) {

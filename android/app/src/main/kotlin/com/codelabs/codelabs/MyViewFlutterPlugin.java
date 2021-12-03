@@ -1,14 +1,22 @@
 package com.codelabs.codelabs;
 
-import io.flutter.plugin.common.PluginRegistry;
+import androidx.annotation.NonNull;
 
-public class MyViewFlutterPlugin {
-    public static void registerWith(PluginRegistry registry) {
-        final String key = MyViewFlutterPlugin.class.getCanonicalName();
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import io.flutter.plugin.platform.PlatformViewRegistry;
 
-        if (registry.hasPlugin(key)) return;
+public class MyViewFlutterPlugin implements FlutterPlugin {
 
-        PluginRegistry.Registrar registrar = registry.registrarFor(key);
-        registrar.platformViewRegistry().registerViewFactory("com.codelabs.codelabs/myview", new MyViewFactory(registrar.messenger()));
+    @Override
+    public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
+        PlatformViewRegistry registry = binding.getPlatformViewRegistry();
+        registry.registerViewFactory(
+                "mynativeview",
+                new MyViewFactory());
+    }
+
+    @Override
+    public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+
     }
 }
